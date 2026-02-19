@@ -8,13 +8,13 @@ CodeClash is a real-time competitive coding platform where multiple players can 
 
 🎯 Features
 
--> 🎮Create & Join Room Interface
--> 👥Dynamic Waiting Lobby
--> ⚡️Real-time Player Updates (WebSockets based)
--> 🧠Integrated Monaco Code Editor
--> 🌙Modern Dark-Themed UI
--> 🔢Live Player Count Display
--> 🟢Start Button Activation Based on Player Count
+-> 🎮Create & Join Room Interface <br>
+-> 👥Dynamic Waiting Lobby <br>
+-> ⚡️Real-time Player Updates (WebSockets based) <br>
+-> 🧠Integrated Monaco Code Editor <br>
+-> 🌙Modern Dark-Themed UI <br>
+-> 🔢Live Player Count Display <br>
+-> 🟢Start Button Activation Based on Player Count <br>
 
 💻Technology Stack
 
