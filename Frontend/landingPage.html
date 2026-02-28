@@ -11,12 +11,16 @@
     
     
     <div class="container">
-        <h1><em>CODE CLASH</h1>
+        <h1><em>CODE CLASH</em></h1>
         <p><em>Compete. Code. Conquer.</em></p>
         
         <div class="btn-group">
-            <button class="btn create">CREATE ROOM</button>
-            <button class="btn join">JOIN ROOM</button>
+            <form action="/create" method="GET">
+            <button type="submit" class="btn create">CREATE ROOM</button>
+            </form>
+            <form action="/join" method="GET">
+            <button type="submit"  class="btn join">JOIN ROOM</button>
+            </form>
         </div>
     </div>
 </body>
