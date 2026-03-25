@@ -1,6 +1,6 @@
 import express from 'express';
 import http from 'http';
-import {Server} from 'socket.io';
+import { Server } from 'socket.io';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -13,22 +13,42 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname , 'Client')));
 
+const rooms = {};
+
 io.on('connection', (socket) => {
     console.log("User Joined :", socket.id);
 
-    socket.on("join-room", ({roomId, name }) => {
-        socket.join(roomId);
-        console.log(name, "Joined", roomId);
+    socket.on("join-room", ({roomId, name})=>{
 
-        io.to(roomId).emit("players-update", {
-            id: socket.id,
-            name
-        });
+        if(!rooms[roomId])
+        {
+            rooms[roomId] = [];
+        }
+
+        if(rooms[roomId].length >= 4)
+        {
+            socket.emit("room-full");
+            return;
+        }
+
+        const player = {id : socket.id, name};
+
+        rooms[roomId].push(player);
+        socket.join(roomId);
+
+        io.to(roomId).emit("Players-Update", rooms[roomId]);
     });
 
-    socket.on('disconnect', () => {
-    console.log("User Disconnected: ", socket.id);
+    socket.on("disconnect", () => {
+        for(let roomId in rooms)
+        {
+            rooms[roomId] = rooms[roomId].filter(p => p.id !== socket.id);
 
+            io.to(roomId).emit("Players-Update", rooms[roomId]);
+
+            if(rooms[roomId].length === 0)
+                delete rooms[roomId];
+        }
     });
 });
 
