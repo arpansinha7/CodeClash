@@ -195,7 +195,7 @@ io.to(roomId).emit("Players-Update", rooms[roomId]);
 
 ```bash
 git clone https://github.com/arpansinha7/CodeClash.git
-cd DriveEasy
+cd CodeClash
 ```
 
 ---
