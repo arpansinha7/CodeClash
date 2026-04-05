@@ -1,132 +1,126 @@
 # ⚔️ CodeClash
 
-Welcome to **CodeClash** 🚀 — a **real-time multiplayer coding platform** where developers can create or join rooms and compete together.
+> **Compete. Code. Conquer.**
 
-This project is currently built as a **real-time lobby system using WebSockets**, and is actively evolving into a **full-fledged coding battle platform**.
+Welcome to **CodeClash** 🚀 — a **real-time multiplayer coding battle platform** where developers can create rooms, compete live, solve algorithmic problems, and climb the leaderboard.
 
-> 💡 Contributions, ideas, and improvements are **highly welcome** — feel free to jump in!
+This project started as a **WebSocket-based lobby system** and has evolved into a **mini competitive coding platform with real-time judging, scoring, and gameplay mechanics**.
 
----
-
-## 📌 Project Overview
-
-CodeClash allows users to:
-
-* Create or join a room using a unique code
-* Wait in a lobby with other players
-* See real-time player updates
-
-The current version focuses on **real-time room management and synchronization**, forming the foundation for a competitive coding environment.
+> 💡 Contributions, ideas, and improvements are always welcome!
 
 ---
 
-## ✨ Current Features
+## 📌 Project Evolution
 
-* 🎯 Create Room with unique room code
-* 🔗 Join Room using room code
-* 👥 Real-time player updates in lobby
-* ⚡ WebSocket-based communication
-* 🚪 Auto cleanup of rooms when empty
-* 👤 Player identity using names
-* 🔒 Max 4 players per room
+CodeClash began with:
+
+* Room creation
+* Player synchronization
+* WebSocket-based communication
+
+It has now evolved into:
+
+* ⚡ Real-time coding battles
+* 🧠 Problem system with structured test cases
+* 💻 Monaco-powered code editor
+* 📊 Leaderboard system (with upcoming live updates)
 
 ---
 
-## ⚙️ Tech Stack
+## 🌟 Features
+
+### ⚔️ Real-Time Multiplayer
+
+* Create or join rooms using unique codes
+* Up to **4 players per room**
+* Live synchronization using Socket.IO
+
+### 🧠 Coding Challenge System
+
+* Automatically assigns **3 questions per game**
+* Difficulty-based structure (easy, medium, hard)
+* Predefined test cases for evaluation
+
+### 💻 Code Editor (Monaco)
+
+* VS Code-like coding experience
+* Syntax highlighting and smooth UI
+* Dynamic switching between multiple questions
+
+### 🧪 Code Execution Engine
+
+* Built using Node.js `vm` module
+* Executes user code in an isolated environment
+* Timeout protection (2 seconds)
+* Deep comparison logic for accurate validation
+
+### 📊 Leaderboard System
+
+* Ranking based on score and performance
+* Updates on submission
+* ⚡ **Evolving into a fully live leaderboard (continuous updates during gameplay)**
+
+### ⏱️ Smart Scoring System
+
+* Time-based scoring mechanism
+* Faster correct solutions earn higher points
+
+### 🎮 Game Flow
+
+* Lobby → Game Start → Coding → Results
+* Host-controlled game start
+* Multi-question navigation using tabs
+
+---
+
+## 🏗️ Tech Stack
 
 ### 🔹 Backend
 
 * Node.js
-* Express
+* Express.js
 * Socket.IO
+* VM Module (sandboxed execution)
 
 ### 🔹 Frontend
 
 * HTML
-* CSS
+* CSS (custom futuristic UI ✨)
 * JavaScript (Vanilla JS)
+* Monaco Editor
 
 ---
 
-## 🧠 Technical Details
+## 🧠 Core Technical Concepts
 
-### 🔹 Room Management
+### 🔹 Room Management (O(1) Access)
 
 ```js
 const rooms = {};
 ```
 
-* Stores active rooms in memory
-* Key → roomId
-* Value → list of players
+### 🔹 Code Execution (Sandboxed)
 
----
+* Uses VM context to safely execute code
+* Prevents access to server scope
+* Controlled execution environment
 
-### 🔹 Socket Events
-
-* `join-room`
-
-  * Adds player to room
-  * Creates room if not exists (⚠️ causes bug)
-  * Emits updated player list
-
-* `Players-Update`
-
-  * Broadcasts updated player list
-
-* `disconnect`
-
-  * Removes player from room
-  * Deletes room if empty
-
----
-
-### 🔹 Player Limit Logic
-
-* Maximum **4 players per room**
-* If limit reached → emits `"room-full"`
-
----
-
-## ⚙️ Algorithms Used / Planned
-
-### 🔹 Room Allocation Algorithm
-
-* Uses **Hash Map (Object in JS)** for O(1) room access
-
-### 🔹 Unique Room Code Generation
+### 🔹 Test Case Validation
 
 ```js
-Math.random().toString(36).substring(2, 8).toUpperCase();
+deepEqual(output, expected)
 ```
 
-### 🔹 Player Removal Algorithm
+### 🔹 Real-Time Communication
 
 ```js
-rooms[roomId] = rooms[roomId].filter(p => p.id !== socket.id);
+io.to(roomId).emit(...)
 ```
 
-### 🔹 Room Cleanup Algorithm
+### 🔹 Leaderboard Algorithm
 
-```js
-if(rooms[roomId].length === 0)
-    delete rooms[roomId];
-```
-
-### 🔹 Real-time Broadcasting
-
-```js
-io.to(roomId).emit("Players-Update", rooms[roomId]);
-```
-
----
-
-### 🔹 Future Algorithms
-
-* ⚡ **Live Leaderboard Algorithm** (real-time updates during coding)
-* ⚖️ **Code Judging Algorithm** (test case validation)
-* ⏱️ **Timer-Based Round System**
-* 🔐 **Room Validation Algorithm**
+* Sort by score (descending)
+* Tie-break using time efficiency
 
 ---
 
@@ -136,60 +130,117 @@ io.to(roomId).emit("Players-Update", rooms[roomId]);
 
 * Create Room / Join Room
 
-### 🧾 Room Selection
+### 🧾 Lobby System
 
-* Enter name
-* Generate or enter room code
+* Enter name & room code
+* Real-time player updates
+* Host starts the game
 
-### ⏳ Waiting Lobby
+### ⚔️ Game Phase
 
-* Displays room code
-* Shows players in real-time
+* 3 coding questions
+* Monaco editor interface
+* Timer-based gameplay
 
----
+### 📊 Result Phase
 
-## ⚠️ Known Issues (Honest Section)
-
-* ❌ Random room code creates new room
-* ❌ No validation before joining
-* ❌ No error feedback for invalid rooms
-* ❌ Start Game button not functional
-* ❌ No coding battle logic yet
+* Instant test case feedback
+* Leaderboard updates
+* Game ends after all submissions
 
 ---
 
-## 🚧 Current Limitations
+## ⚠️ Honest Section (What’s Still Missing)
 
-* No code editor yet
-* No execution environment
-* No persistence (in-memory only)
-* No authentication system
+Keeping it real 👇
+
+* ❌ No multi-language support (JavaScript only)
+* ❌ No persistent database (in-memory storage)
+* ❌ Limited question pool
+* ❌ No authentication system
+* ❌ Live leaderboard not fully continuous yet (in progress)
+
+---
+
+## 🚧 Limitations
+
+* Server restart clears all rooms
+* Basic sandbox (not production-grade secure)
+* No anti-cheat mechanisms
+
+---
+
+## 🤝 Contributing
+
+Contributions are **welcome and appreciated**! 🚀
+
+Whether it's fixing bugs, improving UI, or adding new features — feel free to jump in.
+
+### 🛠️ How to Contribute
+
+1. Fork the repository
+2. Create a new branch
+
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Make your changes
+4. Commit your work
+
+   ```bash
+   git commit -m "Add: your feature description"
+   ```
+5. Push to your branch
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+6. Open a Pull Request
+
+### ⚠️ Guidelines
+
+* Keep code clean and modular
+* Follow existing structure
+* Write meaningful commit messages
+* Test your changes before submitting
+
+---
+
+## 💡 Contribution Ideas
+
+* 📊 Implement **fully live leaderboard (real-time updates during coding)**
+* 🧠 Expand question pool (JSON-based system)
+* 💻 Add multi-language support (Python, C++, Java)
+* 🎨 Improve UI/UX design
+* 🔐 Add authentication & user profiles
+* ⚡ Optimize code execution engine
+* 🏆 Global leaderboard system
+* 🎮 Add matchmaking (public rooms)
+
+---
+
+## 🚀 Upcoming Features
+
+* ⚡ Fully **live leaderboard during gameplay**
+* 🧠 Advanced coding problems with better coverage
+* 💻 Multi-language code execution
+* 🏆 Ranked matchmaking system
+* 📊 Performance analytics (accuracy, speed, attempts)
+* 🔐 User authentication & profiles
+* 🎥 Match replay system
 
 ---
 
 ## 🚀 Future Scope
 
-* 🧠 Integrate **Monaco Editor (via CDN)**
-* 💻 JavaScript-only code submissions
-* ⚡ Live leaderboard updates during coding
-* 📂 Question pool using JSON files
-* ⚖️ Code execution in sandboxed environments
-* ▶️ Start game logic
-* ⏱️ Timer-based rounds
-* 🔒 Fix room joining logic
-* 🎨 Improve UI/UX
-* 🌐 Deployment
+* 🌍 Global competitive coding ecosystem
+* 🧠 AI-based question recommendations
+* 📊 Advanced analytics dashboard
+* 🏆 Tournament system with brackets
 
 ---
 
 ## 🚀 Getting Started
-
-### 🔧 Prerequisites
-
-* Node.js (v14+)
-* npm
-
----
 
 ### 📥 Clone Repository
 
@@ -198,15 +249,11 @@ git clone https://github.com/arpansinha7/CodeClash.git
 cd CodeClash
 ```
 
----
-
 ### 📦 Install Dependencies
 
 ```bash
 npm install
 ```
-
----
 
 ### ▶️ Run Server
 
@@ -214,9 +261,7 @@ npm install
 node server.js
 ```
 
----
-
-### 🌐 Open
+### 🌐 Open in Browser
 
 ```
 http://localhost:3000
@@ -224,47 +269,25 @@ http://localhost:3000
 
 ---
 
-## 🤝 Contributing
-
-Contributions are **welcome and appreciated**! 🚀
-
-Whether it's fixing bugs, improving UI, or adding new features — feel free to contribute.
-
-### Steps:
-
-1. Fork the repository
-2. Create a new branch
-3. Make your changes
-4. Commit and push
-5. Open a Pull Request
-
----
-
-## 💡 Contribution Ideas
-
-* Fix room joining bug
-* Add room validation
-* Implement live leaderboard
-* Integrate Monaco editor
-* Build sandbox execution system
-
----
-
 ## 📚 Learning Outcomes
 
-* Real-time systems using WebSockets
-* Event-driven architecture
-* Multiplayer room design
-* Backend algorithm design
+This project demonstrates:
 
----
-
-## 📜 License
-
-MIT License
+* ⚡ Real-time systems using WebSockets
+* 🧠 Building a coding judge engine
+* 🎮 Multiplayer system design
+* 🔄 Event-driven architecture
+* 💻 Monaco editor integration
+* ⚙️ Full-stack development
 
 ---
 
 ## 👨‍💻 Author
 
 **Arpan Sinha**
+
+---
+
+## ⭐ Support
+
+If you found this project interesting, consider giving it a ⭐ on GitHub!
