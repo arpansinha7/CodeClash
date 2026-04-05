@@ -1,0 +1,71 @@
+[
+    {
+        "id": 1,
+        "title": "Add Two Numbers", 
+        "difficulty": "easy",
+        "description": "Given Two Numbers a & b, return their sum",
+        "functionName": "solution",
+        "starterCode": "function solution(a,b) {\n  //Your Code here\n}",
+        "testCases": [
+            {"input": [1,2], "expected": 3},
+            {"input": [10,20], "expected": 30},
+            {"input": [-5,5], "expected": 0}
+        ]
+    },
+
+    {
+        "id": 2,
+        "title": "Max Element", 
+        "difficulty": "easy",
+        "description": "Given an array of integers, return the largest element",
+        "functionName": "solution",
+        "starterCode": "function solution(arr) {\n  //Your Code here\n}",
+        "testCases": [
+            {"input": [[1,2,3,4,5]], "expected": 5},
+            {"input": [[10,20,90,2,34,32,34,8]], "expected": 90},
+            {"input": [[42]], "expected": 42}
+        ]
+    },
+
+    {
+        "id": 3,
+        "title": "Is Palindrome", 
+        "difficulty": "medium",
+        "description": "Given a string of lowercase characters, return true if it is a palindrome otherwise return false",
+        "functionName": "solution",
+        "starterCode": "function solution(str) {\n  //Your Code here\n}",
+        "testCases": [
+            {"input": ["racecar"], "expected": true},
+            {"input": ["helloworld"], "expected": false},
+            {"input": ["malayalam"], "expected": true}
+        ]
+    },
+
+    {
+        "id": 4,
+        "title": "Two Sum", 
+        "difficulty": "medium",
+        "description": "Given an array of integers and a target, return the indices of the two numbers which adds up to the target.",
+        "functionName": "solution",
+        "starterCode": "function solution(nums,target) {\n  //Your Code here\n}",
+        "testCases": [
+            {"input": [[2,7,11,15],9], "expected": [0,1]},
+            {"input": [[3,2,4], 6], "expected": [1,2]},
+            {"input": [[3,3],6], "expected": [0,1]}
+        ]
+    },
+
+    {
+        "id": 5,
+        "title": "Longest Substring without repeating Characters", 
+        "difficulty": "hard",
+        "description": "Given a string, return the longest substring without repeating characters",
+        "functionName": "solution",
+        "starterCode": "function solution(str) {\n  //Your Code here\n}",
+        "testCases": [
+            {"input": ["abcabcbb"], "expected": 3},
+            {"input": ["bbbbb"], "expected": 1},
+            {"input": ["pwwkew"], "expected": 3}
+        ]
+    }
+]
