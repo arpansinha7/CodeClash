@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeClash Game</title>
+    <link rel="stylesheet" href="CSS/game.css">
+</head>
+<body class="game-body">
+    
+    <div id="topbar">
+    <h2 id="timer">Time Left: 60</h2>
+    <div class="question-tab">
+        <button class="tab-btn active" data-index="0">Q1</button>
+        <button class="tab-btn" data-index="1">Q2</button>
+        <button class="tab-btn" data-index="2">Q3</button>
+    </div>
+    <button id="submit" class="btn create">Submit</button>
+    </div>
+
+
+    <div id="main-panel">
+        <div id="question-panel">
+            <h3 id="question-title">Title</h3>
+            <p id="question"></p>
+        </div>
+        <div id="editor-panel">
+            <div id="editor"></div>
+        </div>
+    </div>
+    <h3>Problem:</h3>
+    <p id="question">
+        Find the sum of Two numbers.
+    </p>
+
+    <div id="editor"></div>
+    <br>
+    <button id="submit" class="btn create">Submit</button>
+
+    
+
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/game.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.53.0/min/vs/loader.min.js"></script>
+    <script>
+        require.config({paths: {vs:'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.53.0/min/vs'}});
+        require(['vs/editor/editor.main'], () => {
+        const questions = JSON.parse(localStorage.getItem("questions"));
+      window.monacoEditor = monaco.editor.create(document.getElementById('editor'), {
+        value: questions ? questions[0].starterCode : '// Write your code here',
+        language: 'javascript',
+        theme: 'vs-dark',
+        fontSize: 14,
+        minimap: { enabled: false },
+        automaticLayout: true
+            });
+            window.monacoReady = true;
+            window.dispatchEvent(new Event('monacoReady'));
+    });
+    </script>
+</body>
+</html>
