@@ -1,5 +1,9 @@
-window.addEventListener('monacoReady', () => {
 const socket = io();
+socket.on("connect", () => {
+    console.log("Socket Connected:", socket.id);
+});
+window.addEventListener('monacoReady', () => {
+
 
 const roomId = localStorage.getItem("roomId");
 const questions = JSON.parse(localStorage.getItem("questions"));
@@ -48,19 +52,27 @@ submitBtn.addEventListener("click", () => {
         questionId
     });
 
-    alert("Submitted!");
 });
 
 socket.on("leaderboard-update", (players) => {
-    
-    console.log("leaderboard recieved");
-    let result = "Leaderboard:\n";
-
+    console.log("players data: ", players);
+    console.log("Leaderboard Recieved");
+    const list = document.getElementById("leaderboard-list");
+    list.innerHTML = "";
     players.forEach((p, i) => {
-        result += `${i+1}. ${p.name} - ${p.score}\n`;
+        const li = document.createElement("li");
+        li.innerText = `${i+1}. ${p.name}`;
+        const span = document.createElement("span");
+        span.innerText = `${p.score} pts`;
+        li.appendChild(span);
+        if(i === 0)
+            li.classList.add("first");
+        else if(i === 1)
+            li.classList.add("second");
+        else if(i === 2)
+            li.classList.add("third");
+        list.appendChild(li);
     });
-
-    alert(result);
 });
 
 socket.on("submission-result",({passed, total, allPassed, score}) => {
