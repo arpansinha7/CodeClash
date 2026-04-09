@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeClash Game</title>
+    <link rel="stylesheet" href="CSS/style.css">
     <link rel="stylesheet" href="CSS/game.css">
 </head>
 <body class="game-body">
     
     <div id="topbar">
     <h2 id="timer">Time Left: 60</h2>
-    <div class="question-tab">
+    <div class="question-tabs">
         <button class="tab-btn active" data-index="0">Q1</button>
         <button class="tab-btn" data-index="1">Q2</button>
         <button class="tab-btn" data-index="2">Q3</button>
@@ -27,17 +28,13 @@
         <div id="editor-panel">
             <div id="editor"></div>
         </div>
+
+        <div id="leaderboard-panel">
+            <h3>Leaderboard</h3>
+            <ul id="leaderboard-list"></ul>
+        </div>
+
     </div>
-    <h3>Problem:</h3>
-    <p id="question">
-        Find the sum of Two numbers.
-    </p>
-
-    <div id="editor"></div>
-    <br>
-    <button id="submit" class="btn create">Submit</button>
-
-    
 
     
     <script src="/socket.io/socket.io.js"></script>
