@@ -1,0 +1,22 @@
+{
+  "name": "codeclash",
+  "version": "1.0.0",
+  "description": "Real Time Multiplayer Coding Arena",
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start" : "node server",
+    "dev" : "nodemon server"
+    
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "moment": "^2.30.1",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
